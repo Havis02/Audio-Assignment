@@ -1,17 +1,26 @@
 let yoff = 0
+var song;
+let amp;
+
+function preload(){
+  song = loadSound("joy.mp3");
+}
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
+  song.play();
+  amp = new p5.Amplitude(0.995);
 }
 
 function draw() {
   background(255);
   translate(width/2, height/2);
-  stroke(0);
-  fill(191,213,232);
-  strokeWeight(2);
+  stroke(191,213,232);
+  fill(255);
+  strokeWeight(6);
+  //console.log(amp.getLevel());
 
-  let da = PI / 100;
+  let da = PI / map(amp.getLevel()/2, 0,0.7, 60, 100);
   let dx = 0.05;
 
   let xoff = 0;
@@ -26,7 +35,7 @@ function draw() {
     } else {
       xoff -= dx;
     }
-    vertex(x,y);
+  vertex(x,y);
   }
   endShape();
   yoff += 0.01;
