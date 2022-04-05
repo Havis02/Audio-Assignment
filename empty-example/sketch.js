@@ -9,7 +9,7 @@ function preload(){
 function setup() {
   createCanvas(windowWidth,windowHeight);
   song.play();
-  amp = new p5.Amplitude(0.995);
+  amp = new p5.Amplitude(0.996);
 }
 
 function draw() {
