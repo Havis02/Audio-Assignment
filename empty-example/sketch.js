@@ -15,10 +15,19 @@ function setup() {
 function draw() { //calls the animation/ reactions to occur
   background(255); // creates a white background
   translate(width/2, height/2); // places the final shape in the center of the window
-  stroke(191,213,232); //sets the stroke colour to be a light blue
+  //stroke(191,213,232); //sets the stroke colour to be a light blue
   fill(255); //white fill to match background
   strokeWeight(6); //sets the thickness of the stroke around the butterfly wing shapes
   //console.log(amp.getLevel());
+  for (var i = 0; i < 2; i++) { // for loop to determine the colours and the changing of the colours throughout the duration of the shapes movement.
+    //the variable of i controls the saturation of the rgb colours as well as which colours are being made dominant for us to see. It also appears to control how bright they appear while changing, the higher the number for i to be less than the brighter the colours are.
+
+    var r = map(sin(frameCount / 15), -1, 1, 350, 160) //variable r is mapping 'red' according to the shapes frame count, the bigger the divided frameCount the slower the colours change, the other numbers determine the saturation of the red colour scale
+    var g = map(i, 0, 10, 90, 160) //this g variable changes the green scale colour through mapping similar to the r variable - effecting brightness and saturation
+    var b = map(cos(frameCount), -1, 1, 220, 120) //variable b is mapping the 'blue' according to the shapes frame count, the bigger the divided frameCount the slower the colours change, the other numbers determine the saturation of the blue colour scale
+
+    stroke(r,g,b) //calls the new r , g , b variables into the stroke so that the outline of the moving shape can adopt these colours.
+  }
 
   let da = PI / map(amp.getLevel()/2, 0,0.7, 60, 100); //stating variable of 'da' to equal PI (circle) / mapping incraments to make the 'noise' (different parts of each wing move). The addition of the 'getamp' calling the prior statement of 'amp' into the code causing the 'noise' to move with the volume of the mp3 sound file.
   let dx = 0.05; //this variable and decimal effects the harsh/sharpness of the noise incraments - the 0.05 making the shape move smoothly and in waves. Changing it to 0.5 makes the shape harsh and pointed.
@@ -27,9 +36,9 @@ function draw() { //calls the animation/ reactions to occur
   beginShape(); //makes the shape start animating
   for (let a = 0; a <=TWO_PI; a += da) { 
     let n = noise(xoff, yoff); //variable stating that the 'noise' 
-    let r = sin(2 * a)* map(n, 0, 0.5, 120, 300);
-    let x = r* cos(a);
-    let y = r* sin(a);
+    let c= sin(2 * a)* map(n, 0, 0.5, 120, 300);
+    let x = c* cos(a);
+    let y = c* sin(a);
     if (a < PI) { //if the angle of the shape is smaller than a full circle - effected by the amplitude of the mp3
       xoff += dx; //then the x axis variable will cause the shape to follow the correct/ previously stated and increase the size of the movement accordingly
     } else {
