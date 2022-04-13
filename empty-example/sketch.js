@@ -1,23 +1,23 @@
 let yoff = 0
-var song;
-let amp;
+var song; //variable stating the song
+let amp; //variable stating the use of amplitude
 
-function preload(){
-  song = loadSound("joy.mp3");
+function preload(){ //function loads the song before the image - runs smoother
+  song = loadSound("joy.mp3"); //telling the code the sound file to run
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
-  song.play();
-  amp = new p5.Amplitude(0.996);
+  createCanvas(windowWidth,windowHeight); //makes the canvas fit the size of the window
+  song.play(); //commands the mp3 file to play upon setup
+  amp = new p5.Amplitude(0.996);//adds in the file and recognision of the code using P5.js amplitude - in the brackets states the smoothness of the amplitude reactions
 }
 
-function draw() {
-  background(255);
-  translate(width/2, height/2);
-  stroke(191,213,232);
-  fill(255);
-  strokeWeight(6);
+function draw() { //calls the animation/ reactions to occur
+  background(255); // creates a white background
+  translate(width/2, height/2); // places the final shape in the center of the window
+  stroke(191,213,232); //sets the stroke colour to be a light blue
+  fill(255); //white fill to match background
+  strokeWeight(6); //sets the thickness of the stroke around the butterfly wing shapes
   //console.log(amp.getLevel());
 
   let da = PI / map(amp.getLevel()/2, 0,0.7, 60, 100);
