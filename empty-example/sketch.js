@@ -20,10 +20,10 @@ function draw() { //calls the animation/ reactions to occur
   strokeWeight(6); //sets the thickness of the stroke around the butterfly wing shapes
   //console.log(amp.getLevel());
 
-  let da = PI / map(amp.getLevel()/2, 0,0.7, 60, 100);
-  let dx = 0.05;
+  let da = PI / map(amp.getLevel()/2, 0,0.7, 60, 100); //stating variable of 'da' to equal PI (circle) / mapping incraments to make the 'noise' (different parts of each wing move). The addition of the 'getamp' calling the prior statement of 'amp' into the code causing the 'noise' to move with the volume of the mp3 sound file.
+  let dx = 0.05; //this variable and decimal effects the harsh/sharpness of the noise incraments - the 0.05 making the shape move smoothly and in waves. Changing it to 0.5 makes the shape harsh and pointed.
 
-  let xoff = 0;
+  let xoff = 1; //this variable effects the spread of the shape and how it relates to the yoff (y axis) variable, increasing this variable makes the shape reach further out to the sides.
   beginShape();
   for (let a = 0; a <=TWO_PI; a += da) {
     let n = noise(xoff, yoff);
