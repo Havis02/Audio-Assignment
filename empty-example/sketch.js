@@ -24,21 +24,21 @@ function draw() { //calls the animation/ reactions to occur
   let dx = 0.05; //this variable and decimal effects the harsh/sharpness of the noise incraments - the 0.05 making the shape move smoothly and in waves. Changing it to 0.5 makes the shape harsh and pointed.
 
   let xoff = 1; //this variable effects the spread of the shape and how it relates to the yoff (y axis) variable, increasing this variable makes the shape reach further out to the sides.
-  beginShape();
-  for (let a = 0; a <=TWO_PI; a += da) {
-    let n = noise(xoff, yoff);
+  beginShape(); //makes the shape start animating
+  for (let a = 0; a <=TWO_PI; a += da) { 
+    let n = noise(xoff, yoff); //variable stating that the 'noise' 
     let r = sin(2 * a)* map(n, 0, 0.5, 120, 300);
     let x = r* cos(a);
     let y = r* sin(a);
-    if (a < PI) {
-      xoff += dx;
+    if (a < PI) { //if the angle of the shape is smaller than a full circle - effected by the amplitude of the mp3
+      xoff += dx; //then the x axis variable will cause the shape to follow the correct/ previously stated and increase the size of the movement accordingly
     } else {
-      xoff -= dx;
+      xoff -= dx; //otherwise, if the angle is bigger than PI then the xoff variable will be equal to or less than the stated noise, making the movement waves of the shape decrease in size 
     }
-  vertex(x,y);
+  vertex(x,y); //starting point of the shape, causes it to be connected as one rather than using point() which makes all incraments separate and without fill.
   }
-  endShape();
-  yoff += 0.01;
+  endShape(); //stops the shape 
+  yoff += 0.03; //effects how much the overall shape moves
   
 
   
