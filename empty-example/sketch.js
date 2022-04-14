@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() { //calls the animation/ reactions to occur
-  background(255); // creates a white background
+  background(170,200,250); // creates a white background
   translate(width/2, height/2); // places the final shape in the center of the window
   //stroke(191,213,232); //sets the stroke colour to be a light blue
   fill(255); //white fill to match background
