@@ -8,12 +8,13 @@ function preload(){ //function loads the song before the image - runs smoother
 
 function setup() {
   createCanvas(windowWidth,windowHeight); //makes the canvas fit the size of the window
+  background(200,230,280); // made the background blue
   song.play(); //commands the mp3 file to play upon setup
   amp = new p5.Amplitude(0.996);//adds in the file and recognision of the code using P5.js amplitude - in the brackets states the smoothness of the amplitude reactions
 }
 
+
 function draw() { //calls the animation/ reactions to occur
-  background(170,200,250); // creates a white background
   translate(width/2, height/2); // places the final shape in the center of the window
   //stroke(191,213,232); //sets the stroke colour to be a light blue
   fill(255); //white fill to match background
