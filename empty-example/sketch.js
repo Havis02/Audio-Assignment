@@ -1,6 +1,9 @@
 let yoff = 0
 var song; //variable stating the song
 let amp; //variable stating the use of amplitude
+var volhistory = [];
+//let amp2;
+
 
 function preload(){ //function loads the song before the image - runs smoother
   song = loadSound("joy.mp3"); //telling the code the sound file to run
@@ -10,11 +13,33 @@ function setup() {
   createCanvas(windowWidth,windowHeight); //makes the canvas fit the size of the window
   background(200,230,280); // made the background blue
   song.play(); //commands the mp3 file to play upon setup
-  amp = new p5.Amplitude(0.996);//adds in the file and recognision of the code using P5.js amplitude - in the brackets states the smoothness of the amplitude reactions
+  amp = new p5.Amplitude(0.5);//adds in the file and recognision of the code using P5.js amplitude - in the brackets states the smoothness of the amplitude reactions
+  //amp2 = new p5.Amplitude();
+  //fft = new p5.FFT();
 }
 
 
 function draw() { //calls the animation/ reactions to occur
+  
+  var vol =amp.getLevel();
+  volhistory.push(vol);
+  stroke(0, 200, 0);
+  strokeWeight(4);
+  noFill(); 
+  beginShape();
+  for (var i = 0; i < volhistory.length; i++) {
+    var y = map(volhistory[i], 0, 3, height , 0);
+    vertex(i, y);
+  }
+  endShape();
+
+  if (volhistory.length > width) {
+    volhistory.splice(0.1);
+    
+  }
+
+  
+  
   translate(width/2, height/2); // places the final shape in the center of the window
   //stroke(191,213,232); //sets the stroke colour to be a light blue
   fill(255); //white fill to match background
@@ -50,6 +75,14 @@ function draw() { //calls the animation/ reactions to occur
   endShape(); //stops the shape 
   yoff += 0.03; //effects how much the overall shape moves
   
+  
+  /*var vol = amp.getLevel();
+  var diam = map(vol, 0, 0.3, 10, 200);
 
+  stroke(255); 
+  fill(255, 0, 225);
+  ellipse(width / 2, height / 2, diam, diam);
+  translate(100, 200);*/
+  
   
 }
