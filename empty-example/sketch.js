@@ -18,10 +18,10 @@ function setup() {
   //fft = new p5.FFT();
 }
 
-
 function draw() { //calls the animation/ reactions to occur
-  
-  var vol =amp.getLevel();
+
+
+  var vol = amp.getLevel();
   volhistory.push(vol);
   stroke(0, 200, 0);
   strokeWeight(4);
@@ -37,9 +37,34 @@ function draw() { //calls the animation/ reactions to occur
     volhistory.splice(0.1);
     
   }
+  
+  switch(key) {
+    case "1":
+      drawshape_butterfly();
+      break;
 
+    default:
+     // background(200,230,280);
+     noStroke();
+     fill(200,230,280);
+     rect(0,0,width, height - 125);
+      var vol = amp.getLevel();
+      volhistory.push(vol);
+      stroke(0, 200, 0);
+      strokeWeight(4);
+      noFill(); 
+      beginShape();
+      for (var i = 0; i < volhistory.length; i++) {
+        var y = map(volhistory[i], 0, 3, height , 0);
+        vertex(i, y);
+      }
+      endShape();
+      break;
+  }  
   
-  
+}
+
+function drawshape_butterfly(){
   translate(width/2, height/2); // places the final shape in the center of the window
   //stroke(191,213,232); //sets the stroke colour to be a light blue
   fill(255); //white fill to match background
@@ -73,16 +98,6 @@ function draw() { //calls the animation/ reactions to occur
   vertex(x,y); //starting point of the shape, causes it to be connected as one rather than using point() which makes all incraments separate and without fill.
   }
   endShape(); //stops the shape 
-  yoff += 0.03; //effects how much the overall shape moves
-  
-  
-  /*var vol = amp.getLevel();
-  var diam = map(vol, 0, 0.3, 10, 200);
-
-  stroke(255); 
-  fill(255, 0, 225);
-  ellipse(width / 2, height / 2, diam, diam);
-  translate(100, 200);*/
-  
-  
+  yoff += 0.03;
 }
+
