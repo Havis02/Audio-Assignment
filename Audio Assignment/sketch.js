@@ -1,7 +1,7 @@
 let yoff = 0
 var song; //variable stating the song
 let amp; //variable stating the use of amplitude
-var volhistory = [];
+var volhistory = []; //variable stating the use of volume history in code
 //let amp2;
 
 
@@ -20,33 +20,34 @@ function setup() {
 
 function draw() { //calls the animation/ reactions to occur
 
-  var vol = amp.getLevel();
-  volhistory.push(vol);
-  stroke(0, 200, 0);
-  strokeWeight(4);
-  noFill(); 
-  beginShape();
-  for (var i = 0; i < volhistory.length; i++) {
-    var y = map(volhistory[i], 0, 3, height , 0);
-    vertex(i, y);
+  var vol = amp.getLevel(); //variable of volume linking to the songs amplitude
+  volhistory.push(vol); //calling the volhistory variable and 'pushing' it into the current code - allowing it to work/ run
+  stroke(0, 200, 0); //setting the amp graphs colour to green
+  strokeWeight(4); //sets the weight of the green stroke
+  noFill(); //nofill added to the amp graph
+  beginShape(); //calling the code to start making the shape
+  for (var i = 0; i < volhistory.length; i++) { //calling a for loop creating the starting point/ variable, makes the graph use 'length' to travel along the bottom of the screen, the i = 0 sets the base point, once bigger than the graphs decided length the graph is made and moving
+    var y = map(volhistory[i], 0, 3, height , 0); //variable y being set to map multiple different point, all of which making up the graph, the stated values determining the graphs height and location on the screen
+    vertex(i, y); //starting point stated
   }
-  endShape();
+  endShape(); //ending the amp graph shape
 
-  if (volhistory.length > width) {
-    volhistory.splice(0.1);
+  if (volhistory.length > width) { //if statement: states that if the length of the graph is greater than the width...
+    volhistory.splice(0.1); //... then the graphs history is remembered as the graph restarts and overlaps on top of the other graph laid before it
     
   }
   
-  switch(key) {
-    case "1":
-      drawshape_butterfly();
-      break;
+  switch(key) { //new switchkey function = allows for a key to be clicked and for code to be called and generated
+    case "1": //chooses key no.1 to be pressed 
+      drawshape_butterfly(); //calls the butterfly code function into the draw function so it can then be called when pressing the 1 key
+      break; //breaks the code/ stops it
 
-    default:
+    default: //the set/ defult state of the windows code
      // background(200,230,280);
-     noStroke();
+     noStroke(); 
      fill(200,230,280);
-     rect(0,0,width, height - 125);
+     rect(0,0,width, height - 125); //new rectangle made and coloured to cover the butterfly up when any other button is pressed
+     //code below recalls previously stated amp graph code
       var vol = amp.getLevel();
       volhistory.push(vol);
       stroke(0, 200, 0);
@@ -63,7 +64,7 @@ function draw() { //calls the animation/ reactions to occur
 
 }
 
-function drawshape_butterfly(){
+function drawshape_butterfly(){ //new drawshape function to later call the butterfly state into the main draw function
   translate(width/2, height/2); // places the final shape in the center of the window
   //stroke(191,213,232); //sets the stroke colour to be a light blue
   fill(255); //white fill to match background
