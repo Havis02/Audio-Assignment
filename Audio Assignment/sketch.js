@@ -20,7 +20,6 @@ function setup() {
 
 function draw() { //calls the animation/ reactions to occur
 
-
   var vol = amp.getLevel();
   volhistory.push(vol);
   stroke(0, 200, 0);
@@ -61,7 +60,7 @@ function draw() { //calls the animation/ reactions to occur
       endShape();
       break;
   }  
-  
+
 }
 
 function drawshape_butterfly(){
